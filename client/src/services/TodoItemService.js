@@ -1,7 +1,8 @@
 export const addItemToServer = async (todoTask, todoDueDate) => {
   const todoItem = mapItemToServer(todoTask, todoDueDate);
+  const API_URL = import.meta.env.VITE_API_URL;
 
-  const savedItemJSON = await fetch("http://localhost:3000/api/todos", {
+  const savedItemJSON = await fetch(`${API_URL}/api/todos`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(todoItem),
@@ -11,13 +12,13 @@ export const addItemToServer = async (todoTask, todoDueDate) => {
 };
 
 export const getItemsFromServer = async () => {
-  const todoItemsJSON = await fetch("http://localhost:3000/api/todos");
+  const todoItemsJSON = await fetch(`${API_URL}/api/todos`);
   const todoItems = await todoItemsJSON.json();
   return todoItems.map(mapItemFromServer);
 };
 
 export const deleteItemFromServer = async (id) => {
-  const deletedIdJSON = await fetch(`http://localhost:3000/api/todos/${id}`, {
+  const deletedIdJSON = await fetch(`${API_URL}/api/todos/${id}`, {
     method: "DELETE",
   });
   const deletedId = await deletedIdJSON.json();
@@ -26,7 +27,7 @@ export const deleteItemFromServer = async (id) => {
 
 export const markCompletedInServer = async (id) => {
   const updatedItemJSON = await fetch(
-    `http://localhost:3000/api/todos/${id}/completed`,
+    `${API_URL}/api/todos/${id}/completed`,
     {
       method: "PUT",
     }
