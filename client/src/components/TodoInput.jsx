@@ -17,14 +17,14 @@ function TodoInput({ addButtonHandler }) {
     <div className="container">
       <form className="row" onSubmit={onAddButton}>
         <div className="col-6">
-          <input
+          <input className={styles.inputField} 
             type="text"
             placeholder="Enter task todo:"
             ref={todoTaskElement}
           />
         </div>
         <div className="col-4">
-          <input type="date" ref={todoDueDateElement} />
+          <input className={styles.inputField}  type="date" ref={todoDueDateElement} />
         </div>
         <div className="col-2">
           <button type="submit" className="btn btn-danger btn-custom">
