@@ -13,12 +13,22 @@ const errorController = require("./controllers/errors");
 const TodoItemRouter = require("./routes/TodoItemRouter");
 
 const DB_PATH = process.env.MONGO_URL;
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 // creating app
 const app = express();
 
 //
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // local frontend
+      FRONTEND_URL, // deployed frontend from env
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // granting access to public folder
