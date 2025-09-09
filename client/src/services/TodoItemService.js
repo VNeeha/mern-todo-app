@@ -1,6 +1,8 @@
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const addItemToServer = async (todoTask, todoDueDate) => {
   const todoItem = mapItemToServer(todoTask, todoDueDate);
-  const API_URL = import.meta.env.VITE_API_URL;
+  
 
   const savedItemJSON = await fetch(`${API_URL}/api/todos`, {
     method: "POST",
